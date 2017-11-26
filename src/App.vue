@@ -1,6 +1,21 @@
 <template>
-  <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
+  <div id="app" class="container">
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <router-link to="/" class="navbar-item">Home</router-link>
+          <router-link to="/admin" class="navbar-item">Admin</router-link>
+          <router-link to="/cart" class="navbar-item">Cart</router-link>
+        </div>
+      </div>
+    </nav>
     <router-view/>
   </div>
 </template>
@@ -11,13 +26,6 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+@import "~bulma";
 </style>
