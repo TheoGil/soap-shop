@@ -7,9 +7,9 @@
 </template>
 
 <script>
-  	export default {
-	  	created() {
-	    	console.log(this.$route.params.id) // prints value of :id
-	  	}
-	}
+  export default {
+    created() {
+      // console.log(this.$route.params.id) // prints value of :id
+    },
+  };
 </script>

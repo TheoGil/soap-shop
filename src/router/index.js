@@ -18,12 +18,11 @@ export default new Router({
     },
     {
       path: '/admin',
-      name: 'Admin',
       component: Index,
       children: [
         {
           path: '',
-          name: 'Products',
+          name: 'Admin',
           component: Products,
         },
         {
@@ -35,7 +34,7 @@ export default new Router({
           path: 'edit/:id',
           name: 'Edit',
           component: Edit,
-        }
+        },
       ],
     },
     {
