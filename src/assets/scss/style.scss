@@ -1,5 +1,13 @@
-@import "./variables.scss";
-@import "~bulma";
-@import "./components/header.scss";
-@import "./components/splash.scss";
-@import "./components/dots.scss";
+// Import variables before vendors so they can use it 
+@import "./_variables.scss";
+
+// Vendors
+@import "./_vendors.scss";
+
+// Custom elements, components, pages...
+@import "./components/_header.scss";
+@import "./components/_off-canvas-menu.scss";
+@import "./components/_splash.scss";
+@import "./components/_dots.scss";
+@import "./components/_buttons.scss";
+@import "./components/_badge.scss";

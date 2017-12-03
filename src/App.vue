@@ -9,12 +9,13 @@
 <script>
 import SvgSprites from './components/SvgSprites.vue';
 import Header from './components/Header.vue';
+
 export default {
   name: 'app',
   components: {
     'svg-sprites': SvgSprites,
-    'navbar': Header,
-  }
+    navbar: Header,
+  },
 };
 </script>
 

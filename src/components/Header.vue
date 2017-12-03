@@ -1,40 +1,55 @@
 <template>
-  <header class="header container">
+  <header class="header">
+    <div class="container">
       <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
+        <div class="navbar-start">
           
-          <button class="navbar-item">
+          <button class="transparent navbar-entry" v-on:click="toggleOffCanvas">
             <svg class="icon icon-angle-down">
               <use xlink:href="#icon-menu"></use>
             </svg>
           </button>
 
-          <router-link to="/" class="navbar-item">
+          <router-link to="/" class="navbar-entry">
             Home
           </router-link>
         </div>
-        <div class="navbar-menu">
-          <div class="navbar-end">
-            <button class="navbar-item">
-              <svg class="icon icon-angle-down">
-                <use xlink:href="#icon-search"></use>
-              </svg>
-            </button>
+        <div class="navbar-end">
+          <button class="navbar-entry transparent">
+            <svg class="icon icon-angle-down">
+              <use xlink:href="#icon-search"></use>
+            </svg>
+          </button>
 
-            <router-link to="/cart" class="navbar-item">
-              <svg class="icon icon-angle-down">
-                <use xlink:href="#icon-cart"></use>
-                <use xlink:href="#icon-cart"></use>
-              </svg>
-            </router-link>
-          </div>
+          <router-link to="/cart" class="navbar-entry">
+            <svg class="icon icon-angle-down">
+              <use xlink:href="#icon-cart"></use>
+            </svg>
+          </router-link>
         </div>
-      </nav>
+      </nav> 
+    </div>
+    <off-canvas :offCanvasIsActive="offCanvasIsActive" v-on:toggleOffCanvas="toggleOffCanvas"/>
   </header>
 </template>
 
 <script>
+  import OffCanvas from '../components/OffCanvas.vue';
+
   export default {
     name: 'Header',
+    data() {
+      return {
+        offCanvasIsActive: false,
+      };
+    },
+    methods: {
+      toggleOffCanvas() {
+        this.offCanvasIsActive = !this.offCanvasIsActive;
+      },
+    },
+    components: {
+      'off-canvas': OffCanvas,
+    },
   };
 </script>
