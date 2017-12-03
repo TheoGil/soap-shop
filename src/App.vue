@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app">
     <svg-sprites/>
     <navbar/>
     <router-view/>
@@ -19,5 +19,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bulma";
+  @import "./assets/scss/style.scss";
 </style>
