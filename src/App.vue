@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import SvgSprites from './components/SvgSprites.vue';
-import Header from './components/Header.vue';
+import SvgSprites from './components/SvgSprites';
+import Header from './components/Header';
 
 export default {
   name: 'app',

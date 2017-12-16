@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import OffCanvas from '../components/OffCanvas.vue';
+  import OffCanvas from '../components/OffCanvas';
 
   export default {
     name: 'Header',

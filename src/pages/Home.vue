@@ -1,10 +1,7 @@
 <template>
   <div>
     <splash/>
-    <div class="row">
-      <div class="small-2 columns">2 <span class="hide-for-small-only">columns</span></div>
-      <div class="small-10 columns">10 columns</div>
-    </div>
+    <products-listing/>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit, tortor non tincidunt fermentum, augue mauris ullamcorper arcu, quis dapibus felis magna eget nisi. Sed ac tempor turpis. Suspendisse potenti. Vestibulum suscipit interdum velit, ut rhoncus ex blandit vehicula. Duis dictum tortor nec lectus fringilla lobortis. In nec velit et libero suscipit finibus. Vivamus at varius purus, sit amet sollicitudin ante. Phasellus elementum tellus nec rhoncus consequat.
     </p>
@@ -21,12 +18,14 @@
 </template>
 
 <script>
-  import Splash from '../components/Splash.vue';
+  import Splash from '../components/Splash';
+  import ProductsListing from '../components/ProductsListing';
 
   export default {
     name: 'home',
     components: {
-      'splash': Splash,
+      splash: Splash,
+      'products-listing': ProductsListing,
     },
     data() {
       return {

@@ -2,11 +2,13 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
+import VueLazyload from 'vue-lazyload'
 import router from './router';
 import App from './App';
 
 Vue.config.productionTip = false;
 Vue.use(VeeValidate);
+Vue.use(VueLazyload);
 
 
 /* eslint-disable no-new */

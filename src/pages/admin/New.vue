@@ -111,8 +111,8 @@
       };
     },
     methods: {
-      saveProduct(model) {
-        console.log(model);
+      saveProduct() {
+        // model
       },
     },
   };

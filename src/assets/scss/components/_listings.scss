@@ -1,0 +1,119 @@
+.item-listing {
+	margin: 0 -($grid-column-gutter / 2);
+	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
+
+	.list-item {
+		width: 50%;
+	    display: block;
+	    padding: 0 $grid-column-gutter / 2;
+
+	    @include breakpoint(medium up) {
+			width: 25%;
+		}
+	}
+
+	.product {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    overflow: hidden;
+	    margin-bottom: $grid-column-gutter;
+
+		a {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			display: flex;
+			flex-direction: column;
+
+			&:hover,
+			&:focus {
+				.product-thumbnail {
+					transform: scale(1.05);
+					transition-timing-function: ease-out;
+				}
+			}
+		}
+
+		.product-thumbnail {
+			position: absolute;
+			z-index: -1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 1s ease-in, opacity $transition-duration ease-out;
+	    }
+
+	    .product-thumbnail-placeholder {
+	    	position: absolute;
+			z-index: -1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background: $color-ui-main;
+
+			svg {
+			    width: 100%;
+			    height: 100%;
+			    fill: $color-ui-main-darker;
+			}
+	    }
+
+	    .product-infos {
+	    	margin-top: auto;
+	    	margin-bottom: 10px;
+	    	padding: $grid-column-gutter / 2;
+	    	background: transparentize($color-white, .25);
+	    	text-align: center;
+	    	color: $color-black;
+	    }
+
+	    .product-data {
+	    	line-height: 1;
+	    	margin-bottom: 5px;
+
+	    	&:last-child {
+	    		margin-bottom: 0;
+	    	}
+	    }
+
+	    .product-icons {
+	    	svg {
+	    		width: 15px;
+	    		height: 15px;
+	    		margin: 0 5px;
+	    		fill: $color-grey;
+	    	}
+	    }
+	}
+}
+
+// Helper to preserve product's aspect-ratio
+// http://ratiobuddy.com/
+.product-wrapper-outer {
+  position: relative;
+
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: (52 / 43) * 100%;
+  }
+
+  > .product-wrapper-inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
