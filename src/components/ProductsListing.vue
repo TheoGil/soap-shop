@@ -1,5 +1,5 @@
 <template>
-  <div class="product-listing">
+  <div class="product-listing" id="product-listing">
     <div class="tabs-wrapper">
       <div class="row column">
         <ol class="tabs-container product-categories">

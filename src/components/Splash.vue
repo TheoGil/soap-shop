@@ -22,11 +22,14 @@
       </div>
     </div>
     <div class="elevator-container">
-      <div class="elevator">
+      <a class="elevator" v-scroll-to="{
+        el: '#product-listing',
+        offset: headerHeight,
+      }">
         <svg class="icon icon-angle-down">
           <use xlink:href="#icon-angle-down"></use>
         </svg>
-      </div>
+      </a>
     </div>
   </section>
 </template>
@@ -34,5 +37,10 @@
 <script>
   export default {
     name: 'Splash',
+    data () {
+      return {
+        headerHeight: -40,
+      }
+    }
   };
 </script>

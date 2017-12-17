@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div class="container">
+    <div class="row column">
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-start">
           
