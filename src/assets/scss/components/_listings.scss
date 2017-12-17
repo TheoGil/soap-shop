@@ -22,6 +22,7 @@
 	    bottom: 0;
 	    overflow: hidden;
 	    margin-bottom: $grid-column-gutter;
+	    box-shadow: $light-box-shadow;
 
 		a {
 			position: absolute;
@@ -36,6 +37,11 @@
 			&:focus {
 				.product-thumbnail {
 					transform: scale(1.05);
+					transition-timing-function: ease-out;
+				}
+
+				.product-infos {
+	    			background: transparentize($color-white, .1);
 					transition-timing-function: ease-out;
 				}
 			}
@@ -75,6 +81,7 @@
 	    	background: transparentize($color-white, .25);
 	    	text-align: center;
 	    	color: $color-black;
+	    	transition: background-color $transition-duration ease-in
 	    }
 
 	    .product-data {

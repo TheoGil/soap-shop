@@ -14,6 +14,10 @@ $baseline-text-shadow: 0 0 5px transparentize($color-black, .3);
   background-image: url('./assets/splash-bg.jpg');
   background-size: cover;
   background-position: 50% 50%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .splash-baseline-container {
@@ -52,6 +56,7 @@ $baseline-text-shadow: 0 0 5px transparentize($color-black, .3);
   bottom: 0;
   width: 250px;
   max-width: 60%;
+  max-height: 60%;
   margin: auto;
   transform: translate(-50%, 50%);
 
@@ -73,7 +78,7 @@ $baseline-text-shadow: 0 0 5px transparentize($color-black, .3);
 }
 
 .elevator-container {
-  flex-grow: 1;
+  min-height: 200px;
   position: relative;
 
   .elevator {

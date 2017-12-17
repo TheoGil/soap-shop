@@ -5,6 +5,8 @@ header.header {
 	left: 0;
 	right: 0;
 	background-color: $color-ui-main;
+	border-bottom: 1px transparentize($color-ui-main-darker, .5) solid;
+    box-shadow: $light-box-shadow;
 
 	.icon {
 	    height: 1.5rem;
