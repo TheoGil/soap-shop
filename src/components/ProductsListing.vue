@@ -125,7 +125,7 @@
             price: '5,90€',
             thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
           },
-        ]
+        ],
       };
     },
   };
