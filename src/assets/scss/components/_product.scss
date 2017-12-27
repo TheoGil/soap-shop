@@ -1,0 +1,19 @@
+$single-product-star-size: 20px;
+.single-product {
+	.notation {
+		display: flex;
+
+		.stars {
+			.icon {
+				width: $single-product-star-size;
+				height: $single-product-star-size;
+			}
+		}
+
+		.review-counter {
+			font-size: $single-product-star-size;
+			line-height: 1;
+			margin-left: 10px;
+		}
+	}
+}
