@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/pages/Home';
 import Cart from '@/pages/Cart';
+import Product from '@/pages/Product';
 import Index from '@/pages/admin/Index';
 import New from '@/pages/admin/New';
 import Products from '@/pages/admin/Products';
@@ -41,6 +42,11 @@ export default new Router({
       path: '/cart',
       name: 'Cart',
       component: Cart,
+    },
+    {
+      path: '/product',
+      name: 'Product',
+      component: Product,
     },
   ],
 });

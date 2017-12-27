@@ -1,3 +1,11 @@
+.fade-enter-active, .fade-leave-active {
+  transition: all 2s;
+}
+.fade-enter, 
+.fade-leave-to {
+  opacity: 0;
+}
+
 .item-listing {
 	margin: 0 -($grid-column-gutter / 2);
 	list-style-type: none;
@@ -8,6 +16,16 @@
 		width: 50%;
 	    display: block;
 	    padding: 0 $grid-column-gutter / 2;
+
+	    /*opacity: 0;
+		transform: translateY(50px);
+		transition: opacity $transition-duration * 4 ease-out,
+					transform $transition-duration * 4 ease-out;
+
+		&.in-viewport {
+			opacity: 1;
+			transform: translateY(0);
+		}*/
 
 	    @include breakpoint(medium up) {
 			width: 25%;

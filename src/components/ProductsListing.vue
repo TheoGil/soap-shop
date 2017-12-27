@@ -23,40 +23,18 @@
     </div>
     <div class="row column">
       <ul class="item-listing">
-        <li v-for="soap in soaps" class="list-item" v-bind:class="{'is-large' : soap.isLarge}">
-          <div class="product-wrapper-outer">
-            <div class="product-wrapper-inner">
-              <div class="product">
-                <a href="#">
-                  <div class="product-thumbnail-placeholder">
-                    <svg class="icon" width="200" height="200">
-                        <use xlink:href="#icon-logo"></use>
-                      </svg>
-                  </div>
-                  <img 
-                    v-lazy="soap.thumbnailUrl"
-                    alt="" 
-                    class="product-thumbnail lazy"
-                  >
-                  <div class="product-infos">
-                    <div class="product-name product-data">{{ soap.name }}</div>
-                    <div class="product-name product-data">{{ soap.price }}</div>
-                    <div class="product-name product-data product-icons">
-                      <svg class="icon">
-                        <use xlink:href="#icon-binoculars"></use>
-                      </svg>
-                      <svg class="icon">
-                        <use xlink:href="#icon-leaf"></use>
-                      </svg>
-                      <svg class="icon">
-                        <use xlink:href="#icon-bookmark"></use>
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
+        <li 
+          v-for="(soap, index) in soaps" 
+          class="list-item" 
+          v-bind:class="{'is-large' : soap.isLarge}"
+          v-bind:key="soap.name"
+          v-bind:data-index="index"
+        >
+          <soap 
+          :title="soap.name"
+          :price="soap.price"
+          :thumbnail="soap.thumbnailUrl"
+          />  
         </li>
       </ul>
     </div>
@@ -64,69 +42,95 @@
 </template>
 
 <script>
+  import ProductThumbnail from '../components/ProductThumbnail';
+
+  import thumb1 from '../assets/img/soaps/eponna.jpg';
+  import thumb2 from '../assets/img/soaps/copeaux-de-savon-coco-pour-lessive.jpg';
+  import thumb3 from '../assets/img/soaps/savon-artisanal-naturel-sang-pour-sang.jpg';
+  import thumb4 from '../assets/img/soaps/savon-artisanal-naturel-cocktail.jpg';
+  import thumb5 from '../assets/img/soaps/savon-naturel-mon-papa-avait-de-la-barbe.jpg';
+  import thumb6 from '../assets/img/soaps/fine-lavande.jpg';
+  import thumb7 from '../assets/img/soaps/savon-artisanal-naturel-vandal.jpg';
+  import thumb8 from '../assets/img/soaps/mellitis.jpg';
+  import thumb9 from '../assets/img/soaps/cybèle.jpg';
+  import thumb10 from '../assets/img/soaps/mon-calendula.jpg';
+  import thumb11 from '../assets/img/soaps/badiane-évasion.jpg';
+
   export default {
     name: 'ProductsListing',
     data() {
       return {
+        show: true,
         soaps: [
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Eponna',
+            price: '3,50€',
+            thumbnailUrl: thumb1,
           },
           {
-            name: 'Bulle d\'amandes douce coffret édition limitée',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Copeaux de savon coco pour lessive',
+            price: '3,60€',
+            thumbnailUrl: thumb2,
           },
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Sang pour sang',
+            price: '6,00€',
+            thumbnailUrl: thumb3,
           },
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
+            name: 'Cocktail',
+            price: '6,00€',
             isLarge: true,
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            thumbnailUrl: thumb4,
           },
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Mon papa avait de la barbe',
+            price: '6,00€',
+            thumbnailUrl: thumb5,
           },
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Fine lavande',
+            price: '6,40€',
+            thumbnailUrl: thumb6,
           },
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Vandal',
+            price: '6,50€',
+            thumbnailUrl: thumb7,
           },
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Mellitis',
+            price: '6,50€',
+            thumbnailUrl: thumb8,
           },
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Cybèle',
+            price: '6,50€',
+            thumbnailUrl: thumb9,
           },
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Mon calendula',
+            price: '6,50€',
+            thumbnailUrl: thumb10,
           },
           {
-            name: 'Bulle d\'amandes douce',
-            price: '5,90€',
-            thumbnailUrl: 'https://source.unsplash.com/315x390/?soap',
+            name: 'Badiane évasion',
+            price: '6,50€',
+            thumbnailUrl: thumb11,
           },
         ],
       };
+    },
+    components: {
+      'soap': ProductThumbnail,
+    },
+    methods: {
+      handleResize: () => {
+        // console.log(this);
+      }
+    },
+    mounted: function () {
+      // window.addEventListener('resize', this.handleResize)
     },
   };
 </script>

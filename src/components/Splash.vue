@@ -37,10 +37,10 @@
 <script>
   export default {
     name: 'Splash',
-    data () {
+    data() {
       return {
         headerHeight: -40,
-      }
-    }
+      };
+    },
   };
 </script>
