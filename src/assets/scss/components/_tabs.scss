@@ -1,24 +1,20 @@
 .tabs-wrapper {
+	position: relative;
 	width: 100%;
 	overflow: hidden;
 	margin-bottom: 1rem;
 	background: $color-ui-main;
-}
-.tabs-container {
-	position: relative;
-	margin: 0;
-	list-style-type: none;
-	display: flex;
-	white-space: nowrap;
 
 	&::before,
 	&::after {
-		// content: '';
+		content: '';
 		position: absolute;
 		top: 0;
 		bottom: 0;
 		pointer-events: none;
 		width: 50px;
+		opacity: 0;
+		transition: opacity $transition-duration ease-out;
 	}
 
 	&::before {
@@ -32,10 +28,31 @@
 		background: linear-gradient(90deg, transparentize($color-ui-main, 1), transparentize($color-ui-main-darker, .5));
 	}
 
+	&.is-left-hidden {
+		&::before {
+			opacity: 1;
+		}
+	}
+
+	&.is-right-hidden {
+		&::after {
+			opacity: 1;
+		}
+	}
+}
+.tabs-container {
+	position: relative;
+	margin: 0 -0.5rem;
+	display: flex;
+	overflow: auto;
+	list-style-type: none;
+	white-space: nowrap;
+
 	li {
 		display: flex;
 
 		a {
+			font-family: 'Pathway Gothic One', sans-serif;
 			position: relative;
 			padding: .5rem 1.5rem;
 			color: $color-grey;
@@ -57,8 +74,7 @@
 			}
 
 			&.is-active,
-			&:hover,
-			&:focus {
+			&:hover {
 				background: $color-ui-main-darker;
 				transition-timing-function: ease-out;
 				color: $color-ui-light;

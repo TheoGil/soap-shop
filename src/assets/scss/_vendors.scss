@@ -2,7 +2,7 @@
 @include foundation-global-styles;
 @include foundation-grid;
 @include foundation-typography;
-@include foundation-xy-grid-classes;
+// @include foundation-xy-grid-classes;
 // @include foundation-button;
 // @include foundation-forms;
 // @include foundation-visibility-classes;
@@ -29,7 +29,7 @@
 // @include foundation-sticky;
 // @include foundation-reveal;
 // @include foundation-switch;
-// @include foundation-table;
+ @include foundation-table;
 // @include foundation-tabs;
 // @include foundation-thumbnail;
 // @include foundation-title-bar;

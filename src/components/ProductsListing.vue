@@ -122,14 +122,14 @@
       };
     },
     components: {
-      'soap': ProductThumbnail,
+      soap: ProductThumbnail,
     },
     methods: {
       handleResize: () => {
         // console.log(this);
-      }
+      },
     },
-    mounted: function () {
+    mounted: () => {
       // window.addEventListener('resize', this.handleResize)
     },
   };

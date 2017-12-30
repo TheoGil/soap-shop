@@ -2,7 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/pages/Home';
 import Cart from '@/pages/Cart';
-import Product from '@/pages/Product';
+import ProductIndex from '@/pages/product/Index';
+import Product from '@/pages/product/Product';
+import ProductReviews from '@/pages/product/Reviews';
 import Index from '@/pages/admin/Index';
 import New from '@/pages/admin/New';
 import Products from '@/pages/admin/Products';
@@ -45,8 +47,21 @@ export default new Router({
     },
     {
       path: '/product',
-      name: 'Product',
-      component: Product,
+      component: ProductIndex,
+      children: [
+        {
+          path: '',
+          name: 'Product',
+          component: Product,
+        },
+        {
+          path: 'reviews',
+          name: 'Reviews',
+          component: ProductReviews,
+        },
+      ],
     },
   ],
+  // linkActiveClass: 'is-active',
+  linkExactActiveClass: 'is-active',
 });

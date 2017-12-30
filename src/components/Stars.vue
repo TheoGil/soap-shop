@@ -12,8 +12,5 @@
   export default {
     name: 'Stars',
     props: ['note'],
-    mounted: function () {
-      console.log(this.note);
-    }
   };
 </script>
