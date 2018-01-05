@@ -24,11 +24,7 @@
     <!-- Slideshow + Actions + Desktop buy form -->
     <div class="row">
       <!-- Actions + Desktop buy form -->
-      <div class="columns large-5 large-push-7 product-labels-actions-container">
-        <div class="product-price">
-          <span itemprop="price" :content="price">{{ price }}</span>
-          <span itemprop="priceCurrency" content="EUR">&euro;</span>
-        </div>
+      <div class="columns medium-5 medium-push-7 product-labels-actions-container">
         <div class="product-labels">
           <div class="product-label">
             <div class="badge">
@@ -72,7 +68,11 @@
           </div>
           <div class="form-control desktop">
             <label class="label">Taille</label>
-            <sizes :select-size="'medium'"/>
+            <sizes :selected-size="selectedSize"/>
+          </div>
+          <div class="form-control product-price desktop">
+            <span itemprop="price" :content="price">{{ price }}</span>
+            <span itemprop="priceCurrency" content="EUR">&euro;</span>
           </div>
           <button class="badge product-buy flex" type="submit">
             <svg class="icon">
@@ -92,7 +92,7 @@
       </div>
       <!-- /Actions + Desktop buy form -->
       <!-- Slideshow -->
-      <div class="columns large-7 large-pull-5 slideshow-container">
+      <div class="columns medium-7 medium-pull-5 slideshow-container">
         <img src="../../assets/img/single-soap/savon-artisanal-naturel-sang-pour-sang.jpg" alt="">
       </div>
       <!-- /Slideshow -->

@@ -1,5 +1,5 @@
 $single-product-star-size: 20px;
-$product-breakpoint: medium down;
+$product-breakpoint: small only;
 .single-product {
 	.product-header {
 		margin-bottom: 10px;
@@ -48,29 +48,13 @@ $product-breakpoint: medium down;
 		}
 
 		.badge {
+			width: 25px;
+
 			.icon {
 				fill: $color-grey;
 				height: 25px;
-			}	
-		}
-
-		.product-label {
-			display: flex;
-			align-items: center;
-
-			@include breakpoint(large up) {
-				&:last-of-type {
-					margin-bottom: 10px;
-				}
 			}
-			
-		}
 
-		.product-label-description {
-			margin-left: 20px;
-		}
-
-		.badge {
 			&.heart {
 				svg {
 					fill: $color-white;
@@ -82,16 +66,8 @@ $product-breakpoint: medium down;
 					}
 				}
 			}
-		}
 
-		@include breakpoint($product-breakpoint) {
-			transform: translateY(50%);
-			display: flex;
-		    align-items: center;
-		    margin-top: -20px;
-
-		    .badge {
-				width: 25px;
+			@include breakpoint($product-breakpoint) {
 				height: 25px;
 				margin: 0 5px;
 
@@ -109,6 +85,33 @@ $product-breakpoint: medium down;
 					fill: $color-grey;
 				}
 			}
+		}
+
+		.product-label {
+			display: flex;
+			align-items: center;
+
+			@include breakpoint(medium up) {
+				// Labels of the pictograms that are displayed on desktop
+				.desktop {
+					margin-left: 15px;
+				}
+
+				&:last-of-type {
+					margin-bottom: 20px;
+				}
+			}
+		}
+
+		.product-label-description {
+			margin-left: 20px;
+		}
+
+		@include breakpoint($product-breakpoint) {
+			transform: translateY(50%);
+			display: flex;
+		    align-items: center;
+		    margin-top: -20px;
 		}
 	}
 
@@ -157,7 +160,7 @@ $product-breakpoint: medium down;
 				}
 			}
 
-			@include breakpoint(large up) {
+			@include breakpoint(medium up) {
 				&.heart,
 				&.share {
 					width: 40px;
@@ -177,7 +180,7 @@ $product-breakpoint: medium down;
 			height: 45px;
 			color: $color-grey;
 
-			@include breakpoint(large up) {
+			@include breakpoint(medium up) {
 				width: 100%;
 				border-radius: $button-border-radius;
 				margin-bottom: 15px;
@@ -189,7 +192,8 @@ $product-breakpoint: medium down;
 				fill: $color-grey;
 			}
 
-			.label-for-large {
+			// Button's label displayed on desktop
+			.desktop {
 				margin-left: 20px;
 			}
 		}
