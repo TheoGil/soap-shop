@@ -19,3 +19,21 @@
 @import "./components/_stars.scss";
 @import "./components/_grid.scss";
 @import "./components/_reviews.scss";
+@import "./components/_forms.scss";
+
+.slide-right-enter-active, .slide-right-leave-active {
+  transition: transform 1s;
+  background: red;
+}
+
+.slide-right-enter, .slide-right-leave-active {
+  transform: translateX(-100%);
+}
+
+.slide-left-enter-active, .slide-left-leave-active {
+  transition: transform 1s
+}
+
+.slide-left-enter, .slide-left-leave-active {
+  transform: translateX(100%);
+}

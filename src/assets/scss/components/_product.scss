@@ -1,5 +1,22 @@
 $single-product-star-size: 20px;
+$product-breakpoint: medium down;
 .single-product {
+	.product-header {
+		margin-bottom: 10px;
+		
+		@include breakpoint($product-breakpoint) {
+			margin-bottom: 0;
+		}
+
+		.product-price {
+			display: none;
+
+			@include breakpoint($product-breakpoint) {
+				display: block;
+			}
+		}
+	}
+
 	.notation {
 		display: flex;
 
@@ -24,30 +41,36 @@ $single-product-star-size: 20px;
 	}
 
 	.product-labels-actions-container {
-		transform: translateY(50%);
-		display: flex;
-	    align-items: center;
-	    margin-top: -20px;
+		.product-price {
+			@include breakpoint($product-breakpoint) {
+				display: none;
+			}
+		}
 
 		.badge {
-			width: 25px;
-			height: 25px;
-			margin: 0 5px;
-
-			&:first-child {
-				margin-left: 0;
-			}
-
-			&:last-child {
-				margin-right: 0;
-			}
-
-			svg {
-				width: 15px;
-				height: 15px;
+			.icon {
 				fill: $color-grey;
-			}
+				height: 25px;
+			}	
+		}
 
+		.product-label {
+			display: flex;
+			align-items: center;
+
+			@include breakpoint(large up) {
+				&:last-of-type {
+					margin-bottom: 10px;
+				}
+			}
+			
+		}
+
+		.product-label-description {
+			margin-left: 20px;
+		}
+
+		.badge {
 			&.heart {
 				svg {
 					fill: $color-white;
@@ -60,50 +83,122 @@ $single-product-star-size: 20px;
 				}
 			}
 		}
+
+		@include breakpoint($product-breakpoint) {
+			transform: translateY(50%);
+			display: flex;
+		    align-items: center;
+		    margin-top: -20px;
+
+		    .badge {
+				width: 25px;
+				height: 25px;
+				margin: 0 5px;
+
+				&:first-child {
+					margin-left: 0;
+				}
+
+				&:last-child {
+					margin-right: 0;
+				}
+
+				svg {
+					width: 15px;
+					height: 15px;
+					fill: $color-grey;
+				}
+			}
+		}
+	}
+
+	.desktop {
+		@include breakpoint($product-breakpoint) {
+			display: none;
+		}
 	}
 
 	.product-labels {
 		display: flex;
+		flex-direction: column;
+
+		@include breakpoint($product-breakpoint) {
+			flex-direction: row;
+		}
 	}
 
 	.product-actions {
 		margin-left: auto;
 		display: flex;
 		align-items: center;
+		flex-wrap: wrap;
 
 		.badge {
 			width: 30px;
 			height: 30px;
 			background: $color-ui-main;
-			box-shadow: $light-box-shadow;
 			transition: $transition-duration;
 			cursor: pointer;
 
-			&.share,
-			&.share:hover {
-				background: $color-white;
-			}
-
 			&:hover {
 				background: $color-ui-main-darker;
-				transform: scale(1.1);
+			}
+
+			@include breakpoint($product-breakpoint) {
+				box-shadow: $light-box-shadow;
+
+				&.share,
+				&.share:hover {
+					background: $color-white;
+				}
+
+				&:hover {
+					transform: scale(1.1);
+				}
+			}
+
+			@include breakpoint(large up) {
+				&.heart,
+				&.share {
+					width: 40px;
+					height: 40px;
+					margin: auto; 
+
+					.icon {
+						width: 20px;
+						height: 20px;
+					}
+				}
 			}
 		}
 
 		.product-buy {
 			width: 45px;
 			height: 45px;
+			color: $color-grey;
+
+			@include breakpoint(large up) {
+				width: 100%;
+				border-radius: $button-border-radius;
+				margin-bottom: 15px;
+			}
 
 			svg {
 				width: 25px;
 				height: 25px;
 				fill: $color-grey;
 			}
+
+			.label-for-large {
+				margin-left: 20px;
+			}
 		}
 	}
 
 	.slideshow-container {
-		padding: 0;
+		@include breakpoint($product-breakpoint) {
+			padding: 0;
+		}
 	}
 
 	.sizes {
@@ -117,6 +212,8 @@ $single-product-star-size: 20px;
     		flex-direction: column;
     		padding: 10px 0;
     		cursor: pointer;
+    		transition: background $transition-duration;
+    		color: $color-grey;
 
     		&.is-active {
     			background: $color-ui-main;
@@ -126,9 +223,21 @@ $single-product-star-size: 20px;
     			outline: 0;
     		}
 
-    		&:last-of-type {
-				border-right: 0; 
+    		&:hover:not(.is-active) {
+    			background: transparentize($color-ui-main, .75);
     		}
+
+    		@include breakpoint(large-up) {
+				&:first-of-type {
+					border-left: 1px $color-grey-light solid; 
+	    		}
+			}
+
+			@include breakpoint($product-breakpoint) {
+				&:last-of-type {
+					border-right: 0; 
+	    		}
+			}
 		}
 
 		.icon {

@@ -1,7 +1,7 @@
 <template>
   <div itemscope itemtype="http://schema.org/Product">
     <!-- Product Header -->
-    <div class="row flex">
+    <div class="row flex product-header">
       <div class="columns small-8">
         <h1 class="product-title" itemprop="name">{{ title }}</h1>
         <div 
@@ -21,83 +21,83 @@
       </div>
     </div>
     <!-- /Product Header -->
-
-    <!-- Labels and actions  -->
-    <div class="row column product-labels-actions-container">
-      <div class="product-labels">
-        <div class="badge">
-          <svg class="icon">
-            <use xlink:href="#icon-binoculars"></use>
-          </svg>
+    <!-- Slideshow + Actions + Desktop buy form -->
+    <div class="row">
+      <!-- Actions + Desktop buy form -->
+      <div class="columns large-5 large-push-7 product-labels-actions-container">
+        <div class="product-price">
+          <span itemprop="price" :content="price">{{ price }}</span>
+          <span itemprop="priceCurrency" content="EUR">&euro;</span>
         </div>
-        <div class="badge">
-          <svg class="icon">
-            <use xlink:href="#icon-leaf"></use>
-          </svg>
+        <div class="product-labels">
+          <div class="product-label">
+            <div class="badge">
+              <svg class="icon">
+                <use xlink:href="#icon-binoculars"></use>
+              </svg>
+            </div>
+            <div class="desktop">
+              Ce savon est certifié 100% naturel
+            </div>
+          </div>
+          <div class="product-label">
+            <div class="badge">
+              <svg class="icon">
+                <use xlink:href="#icon-leaf"></use>
+              </svg>
+            </div>
+            <div class="desktop">
+              Saponification à froid
+            </div>
+          </div>
+          <div class="product-label">
+            <div class="badge">
+              <svg class="icon">
+                <use xlink:href="#icon-bookmark"></use>
+              </svg>
+            </div>
+            <div class="desktop">
+              Tous les composants sont d'origine végétale
+            </div>
+          </div>
         </div>
-        <div class="badge">
-          <svg class="icon">
-            <use xlink:href="#icon-bookmark"></use>
-          </svg>
-        </div>
+        <form class="product-actions">
+          <div class="form-control desktop">
+            <label class="label" for="quantity">Quantitée désirée</label>
+            <quantity 
+              :value="quantity" 
+              :max-value="availableStock"
+              :input-name="'quantity'"
+            />
+          </div>
+          <div class="form-control desktop">
+            <label class="label">Taille</label>
+            <sizes :select-size="'medium'"/>
+          </div>
+          <button class="badge product-buy flex" type="submit">
+            <svg class="icon">
+              <use xlink:href="#icon-cart"></use>
+            </svg>
+            <span class="desktop">
+              Ajouter au panier
+            </span>
+          </button>
+          <heart/>
+          <a class="badge share" href="#">
+            <svg class="icon">
+              <use xlink:href="#icon-share"></use>
+            </svg>
+          </a>
+        </form>
       </div>
-      <div class="product-actions">
-        <a class="badge product-buy" href="#">
-          <svg class="icon">
-            <use xlink:href="#icon-cart"></use>
-          </svg>
-        </a>
-        <heart/>
-        <a class="badge share" href="#">
-          <svg class="icon">
-            <use xlink:href="#icon-share"></use>
-          </svg>
-        </a>
+      <!-- /Actions + Desktop buy form -->
+      <!-- Slideshow -->
+      <div class="columns large-7 large-pull-5 slideshow-container">
+        <img src="../../assets/img/single-soap/savon-artisanal-naturel-sang-pour-sang.jpg" alt="">
       </div>
+      <!-- /Slideshow -->
     </div>
-    <!-- /Labels and actions -->
-
-    <!-- Product Slideshow -->
-    <div class="row column slideshow-container">
-      <img src="../../assets/img/single-soap/savon-artisanal-naturel-sang-pour-sang.jpg" alt="">
-    </div>
-    <!-- /Product Slideshow -->
-
-    <!-- Product sizes -->
-    <div class="sizes flex">
-      <button 
-        class="flex"
-        v-on:click="selectedSize = 'small'"
-        v-bind:class="{'is-active' : selectedSize == 'small'}"
-      >
-        <svg class="icon small">
-          <use xlink:href="#icon-soap"></use>
-        </svg>
-        Small
-      </button>
-      <button 
-        class="flex"
-        v-on:click="selectedSize = 'medium'"
-        v-bind:class="{'is-active' : selectedSize == 'medium'}"
-      >
-        <svg class="icon medium">
-          <use xlink:href="#icon-soap"></use>
-        </svg>
-        Medium
-      </button>
-      <button 
-        class="flex"
-        v-on:click="selectedSize = 'large'"
-        v-bind:class="{'is-active' : selectedSize == 'large'}"
-      >
-        <svg class="icon large">
-          <use xlink:href="#icon-soap"></use>
-        </svg>
-        Large
-      </button>
-    </div>
-    <!-- /Product sizes -->
-
+    <!-- Slideshow + Actions + Desktop buy form -->
     <div class="row column">
       <section class="section">
         <h2>Description</h2>
@@ -110,7 +110,6 @@
         </div>
       </section>
     </div>
-
     <div class="row column">
       <section class="section">
         <h2>Caractéristiques</h2>
@@ -148,6 +147,8 @@
 <script>
   import Stars from '../../components/Stars';
   import Heart from '../../components/Heart';
+  import Quantity from '../../components/Quantity';
+  import Sizes from '../../components/Sizes';
 
   export default {
     name: 'Product',
@@ -158,11 +159,15 @@
         note: 4,
         reviewCount: 32,
         selectedSize: 'medium',
+        quantity: 1,
+        availableStock: 5,
       };
     },
     components: {
       stars: Stars,
       heart: Heart,
+      quantity: Quantity,
+      sizes: Sizes,
     },
   };
 </script>
