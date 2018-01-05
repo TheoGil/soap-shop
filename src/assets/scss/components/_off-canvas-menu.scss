@@ -3,6 +3,7 @@ header {
 
 	.off-canvas {
 		position: fixed;
+		z-index: $z-index-highest;
 		top: 0;
 		bottom: 0;
 		background: white;
@@ -112,6 +113,7 @@ header {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	z-index: $z-index-highest;
 	background: transparentize($color-black, .5);
 	opacity: 0;
 	transition: opacity $transition-duration;
