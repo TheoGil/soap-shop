@@ -32,12 +32,13 @@
     methods: {
       increment() {
         if (this.value < this.maxValue) {
-          this.value += 1;
+          // this.value += 1;
+          this.$emit('setQuantity', this.value + 1);
         }
       },
       decrement() {
         if (this.value > 1) {
-          this.value -= 1;
+          this.$emit('setQuantity', this.value - 1);
         }
       },
     },

@@ -64,11 +64,15 @@
               :value="quantity" 
               :max-value="availableStock"
               :input-name="'quantity'"
+              v-on:setQuantity="setQuantity"
             />
           </div>
           <div class="form-control desktop">
             <label class="label">Taille</label>
-            <sizes :selected-size="selectedSize"/>
+            <sizes 
+              :selected-size="selectedSize"
+              v-on:setSize="setSize"
+            />
           </div>
           <div class="form-control product-price desktop">
             <span itemprop="price" :content="price">{{ price }}</span>
@@ -162,6 +166,14 @@
         quantity: 1,
         availableStock: 5,
       };
+    },
+    methods: {
+      setQuantity(newQuantity) {
+        this.quantity = newQuantity;
+      },
+      setSize(newSize) {
+        this.selectedSize = newSize;
+      },
     },
     components: {
       stars: Stars,

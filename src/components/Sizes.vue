@@ -2,7 +2,7 @@
   <div class="sizes flex">
     <button 
       class="flex"
-      v-on:click="selectedSize = 'small'"
+      v-on:click="$emit('setSize', 'small')"
       v-bind:class="{'is-active' : selectedSize == 'small'}"
     >
       <svg class="icon small">
@@ -12,7 +12,7 @@
     </button>
     <button 
       class="flex"
-      v-on:click="selectedSize = 'medium'"
+      v-on:click="$emit('setSize', 'medium')"
       v-bind:class="{'is-active' : selectedSize == 'medium'}"
     >
       <svg class="icon medium">
@@ -22,7 +22,7 @@
     </button>
     <button 
       class="flex"
-      v-on:click="selectedSize = 'large'"
+      v-on:click="$emit('setSize', 'large')"
       v-bind:class="{'is-active' : selectedSize == 'large'}"
     >
       <svg class="icon large">
