@@ -30,12 +30,12 @@
       return {};
     },
     methods: {
-      increment () {
+      increment() {
         if (this.value < this.maxValue) {
           this.value += 1;
         }
       },
-      decrement (e) {
+      decrement() {
         if (this.value > 1) {
           this.value -= 1;
         }

@@ -25,14 +25,14 @@
               name: 'Danan',
             },
             note: 4,
-            content: 'A recommander à toutes les peaux sensibles et sèches'
+            content: 'A recommander à toutes les peaux sensibles et sèches',
           },
           {
             author: {
               name: 'Manon',
             },
             note: 5,
-            content: 'Un excellent savon que j\'utilise pour les mains. Très agréable à utiliser, ne dessèche pas les mains et sens très bon.'
+            content: 'Un excellent savon que j\'utilise pour les mains. Très agréable à utiliser, ne dessèche pas les mains et sens très bon.',
           },
         ],
       };

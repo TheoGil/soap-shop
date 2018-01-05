@@ -16,7 +16,7 @@
       };
     },
     methods: {
-      toggle: function () {
+      toggle() {
         this.isFavourite = !this.isFavourite;
       },
     },
