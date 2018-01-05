@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" v-sticky="{zIndex: 100, stickyTop: 0}">
     <div class="row column">
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-start">
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+  import VueSticky from 'vue-sticky';
   import OffCanvas from '../components/OffCanvas';
 
   export default {
@@ -50,6 +51,9 @@
     },
     components: {
       'off-canvas': OffCanvas,
+    },
+    directives: {
+      'sticky': VueSticky,
     },
   };
 </script>
