@@ -25,38 +25,6 @@
     <div class="row">
       <!-- Actions + Desktop buy form -->
       <div class="columns medium-5 medium-push-7 product-labels-actions-container">
-        <div class="product-labels">
-          <div class="product-label">
-            <div class="badge">
-              <svg class="icon">
-                <use xlink:href="#icon-binoculars"></use>
-              </svg>
-            </div>
-            <div class="desktop">
-              Ce savon est certifié 100% naturel
-            </div>
-          </div>
-          <div class="product-label">
-            <div class="badge">
-              <svg class="icon">
-                <use xlink:href="#icon-leaf"></use>
-              </svg>
-            </div>
-            <div class="desktop">
-              Saponification à froid
-            </div>
-          </div>
-          <div class="product-label">
-            <div class="badge">
-              <svg class="icon">
-                <use xlink:href="#icon-bookmark"></use>
-              </svg>
-            </div>
-            <div class="desktop">
-              Tous les composants sont d'origine végétale
-            </div>
-          </div>
-        </div>
         <form class="product-actions">
           <div class="form-control desktop">
             <label class="label" for="quantity">Quantitée désirée</label>
@@ -102,9 +70,35 @@
       <!-- /Slideshow -->
     </div>
     <!-- Slideshow + Actions + Desktop buy form -->
-    <div class="row column">
+    <div class="row column section-wrapper">
       <section class="section">
-        <h2>Description</h2>
+        <div class="product-labels-container">
+          <div class="product-label">
+            <svg class="icon">
+              <use xlink:href="#icon-binoculars"></use>
+            </svg>
+            <div class="desktop">
+              Ce savon est certifié 100% naturel
+            </div>
+          </div>
+          <div class="product-label">
+            <svg class="icon">
+              <use xlink:href="#icon-leaf"></use>
+            </svg>
+            <div class="desktop">
+              Saponification à froid
+            </div>
+          </div>
+          <div class="product-label">
+            <svg class="icon">
+              <use xlink:href="#icon-bookmark"></use>
+            </svg>
+            <div class="desktop">
+              Tous les composants sont d'origine végétale
+            </div>
+          </div>
+        </div>
+        <h2 class="section-title">Description</h2>
         <div data-itemprop="description">
           <p>Sans parfum - 100g</p>
           <p>Enveloppez votre peau dans un cocon de douceur avec bulles d'amande douce!</p>
@@ -114,9 +108,9 @@
         </div>
       </section>
     </div>
-    <div class="row column">
+    <div class="row column section-wrapper">
       <section class="section">
-        <h2>Caractéristiques</h2>
+        <h2 class="section-title">Caractéristiques</h2>
         <table>
           <tr>
             <td>Artisan</td>
