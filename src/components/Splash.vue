@@ -3,7 +3,7 @@
     <div class="splash-upper">
       <div class="splash-baseline-container">
         <div class="greeting-message">
-          Welcome back to
+          Welcome to
         </div>
         <div class="website-title">
           Mon Savonnier
