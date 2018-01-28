@@ -46,7 +46,9 @@
             <span itemprop="price" :content="price">{{ price }}</span>
             <span itemprop="priceCurrency" content="EUR">&euro;</span>
           </div>
-          <button class="badge product-buy flex" type="submit">
+          <button class="badge product-buy flex"
+                  v-on:click="addToCart"
+          >
             <svg class="icon">
               <use xlink:href="#icon-cart"></use>
             </svg>
@@ -152,8 +154,9 @@
     name: 'Product',
     data() {
       return {
+        id: 10754,
         title: 'Bulles d\'amande douce',
-        price: '5.90',
+        price: 5.90,
         note: 4,
         reviewCount: 32,
         selectedSize: 'medium',
@@ -167,6 +170,19 @@
       },
       setSize(newSize) {
         this.selectedSize = newSize;
+      },
+      addToCart() {
+        Snipcart.api.items.add({
+          id: this.id,
+          name: this.title,
+          url: '/',
+          price: this.price,
+          quantity: this.quantity,
+        })
+        .then((item) => {
+          // Item sucessfully added
+          console.log(item);
+        });
       },
     },
     components: {

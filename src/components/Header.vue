@@ -21,11 +21,17 @@
             </svg>
           </button>
 
-          <router-link to="/cart" class="navbar-entry">
+          <button class="navbar-entry transparent" v-on:click="showCart">
+            <svg class="icon">
+              <use xlink:href="#icon-cart"></use>
+            </svg>
+          </button>
+          <!--<router-link to="/cart" class="navbar-entry">
             <svg class="icon icon-angle-down">
               <use xlink:href="#icon-cart"></use>
             </svg>
           </router-link>
+          -->
         </div>
       </nav> 
     </div>
@@ -47,6 +53,9 @@
     methods: {
       toggleOffCanvas() {
         this.offCanvasIsActive = !this.offCanvasIsActive;
+      },
+      showCart() {
+        Snipcart.api.modal.show();
       },
     },
     components: {
