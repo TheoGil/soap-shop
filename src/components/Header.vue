@@ -21,7 +21,9 @@
             </svg>
           </button>
 
-          <button class="navbar-entry transparent" v-on:click="showCart">
+          <button class="navbar-entry transparent"
+                  type="button"
+                  v-on:click="showCart">
             <svg class="icon">
               <use xlink:href="#icon-cart"></use>
             </svg>

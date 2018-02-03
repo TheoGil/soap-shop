@@ -147,11 +147,11 @@
         <div class="modal-section">
           <div class="h3">Taille</div>
           <sizes
-                  :selected-size="selectedSize"
-                  v-on:setSize="setSize"
+            :selected-size="selectedSize"
+            v-on:setSize="setSize"
           />
         </div>
-        <div class="modal-section">
+        <div class="modal-section form-control">
           <div class="h3">Quantitée</div>
           <quantity
             :value="quantity"
@@ -160,12 +160,14 @@
             v-on:setQuantity="setQuantity"
           />
         </div>
-        <button class="button" @click="$emit('close')">
-          Annuler
-        </button>
-        <button class="button" @click="$emit('close')">
-          Ajouter
-        </button>
+        <div class="modal-actions">
+          <button class="button transparent" @click="displayModal = false">
+            Annuler
+          </button>
+          <button class="button" @click="addToCart">
+            Ajouter
+          </button>
+        </div>
       </div>
     </modal>
   </div>
@@ -205,14 +207,12 @@
         const smallBreakpoint = 800;
         const isMobile = window.innerWidth < smallBreakpoint;
         if (isMobile) {
-          console.log('displaymodale');
           this.displayModal = true;
         } else {
           this.addToCart();
         }
       },
       addToCart() {
-        /*
         Snipcart.api.items.add({
           id: this.id,
           name: this.title,
@@ -224,10 +224,6 @@
           // Item sucessfully added
           console.log(item);
         });
-        */
-      },
-      toggleSizesModale() {
-
       },
     },
     components: {

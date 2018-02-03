@@ -244,12 +244,6 @@ $product-breakpoint: small only;
 					border-left: 1px $color-grey-light solid; 
 	    		}
 			}
-
-			@include breakpoint($product-breakpoint) {
-				&:last-of-type {
-					border-right: 0; 
-	    		}
-			}
 		}
 
 		.icon {

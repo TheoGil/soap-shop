@@ -14,4 +14,8 @@
 	&:hover {
 		background: $color-ui-main-darker;
 	}
+
+	&.transparent {
+		background-color: transparent;
+	}
 }
