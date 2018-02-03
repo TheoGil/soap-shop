@@ -22,6 +22,8 @@ $breakpoints: (
 );
 
 $transition-duration: 150ms;
+$ease-out-back: cubic-bezier(0.175, 0.885, 0.320, 1);
+$ease-in-back: cubic-bezier(0.600, -0.280, 0.735, 0.045);
 
 $light-box-shadow: 0 0 5px transparentize($color-black, .75);
 

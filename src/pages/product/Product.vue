@@ -47,7 +47,8 @@
             <span itemprop="priceCurrency" content="EUR">&euro;</span>
           </div>
           <button class="badge product-buy flex"
-                  v-on:click="addToCart"
+                  v-on:click="handleClickAddButton"
+                  type="button"
           >
             <svg class="icon">
               <use xlink:href="#icon-cart"></use>
@@ -141,6 +142,32 @@
         </table>
       </section>
     </div>
+    <modal v-if="displayModal" @close="displayModal = false">
+      <div slot="body">
+        <div class="modal-section">
+          <div class="h3">Taille</div>
+          <sizes
+                  :selected-size="selectedSize"
+                  v-on:setSize="setSize"
+          />
+        </div>
+        <div class="modal-section">
+          <div class="h3">Quantitée</div>
+          <quantity
+            :value="quantity"
+            :max-value="availableStock"
+            :input-name="'quantity'"
+            v-on:setQuantity="setQuantity"
+          />
+        </div>
+        <button class="button" @click="$emit('close')">
+          Annuler
+        </button>
+        <button class="button" @click="$emit('close')">
+          Ajouter
+        </button>
+      </div>
+    </modal>
   </div>
 </template>
 
@@ -149,6 +176,7 @@
   import Heart from '../../components/Heart';
   import Quantity from '../../components/Quantity';
   import Sizes from '../../components/Sizes';
+  import Modal from '../../components/Modal';
 
   export default {
     name: 'Product',
@@ -162,6 +190,7 @@
         selectedSize: 'medium',
         quantity: 1,
         availableStock: 5,
+        displayModal: false,
       };
     },
     methods: {
@@ -171,7 +200,19 @@
       setSize(newSize) {
         this.selectedSize = newSize;
       },
+      handleClickAddButton() {
+        // @TODO Implement the foundation util function that retrieve breakpoints from CSS
+        const smallBreakpoint = 800;
+        const isMobile = window.innerWidth < smallBreakpoint;
+        if (isMobile) {
+          console.log('displaymodale');
+          this.displayModal = true;
+        } else {
+          this.addToCart();
+        }
+      },
       addToCart() {
+        /*
         Snipcart.api.items.add({
           id: this.id,
           name: this.title,
@@ -183,6 +224,10 @@
           // Item sucessfully added
           console.log(item);
         });
+        */
+      },
+      toggleSizesModale() {
+
       },
     },
     components: {
@@ -190,6 +235,7 @@
       heart: Heart,
       quantity: Quantity,
       sizes: Sizes,
+      modal: Modal,
     },
   };
 </script>
