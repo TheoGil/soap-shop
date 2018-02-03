@@ -1,7 +1,8 @@
 <template>
   <div class="quantity-input-container">
     <button 
-      class="button" 
+      class="button"
+      type="button"
       v-on:click="decrement"
     >
       -
@@ -15,6 +16,7 @@
     >
     <button 
       class="button"
+      type="button"
       v-on:click="increment"
     >
       +
