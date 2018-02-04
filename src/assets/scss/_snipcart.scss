@@ -41,6 +41,10 @@ $_base-z-index: 1040;
     STYLE
 \*------------------------------------*/
 
+#snipcart-amount {
+    font-weight: bold;
+}
+
 // Body override
 body.snip-open {
     height: auto !important;

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "foundation-sites": "^6.4.4-rc1",
+    "gsap": "^1.20.3",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "vee-validate": "^2.0.0-rc.25",
