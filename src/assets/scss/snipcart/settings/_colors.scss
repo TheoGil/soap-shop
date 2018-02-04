@@ -12,13 +12,13 @@ $palettes: (
         link: #999
     ),
     button: (
-        background: #555,
-        background--highlight: #efe778,
-        background--hover: darken(#555, 10%),
+        background: $color-grey,
+        background--highlight: $color-green,
+        background--hover: darken($color-grey, 10%),
         background--danger: $color-red,
         background--danger-hover: darken($color-red, 10%),
-        background--highlight-hover: darken(#efe778, 10%),
-        color: #fff,
+        background--highlight-hover: darken($color-green, 10%),
+        color: $color-white,
         color--highlight: #222,
     ),
     error: (
@@ -73,7 +73,7 @@ $palettes: (
     ),
     loader: (
         background: #222,
-        background--highlight: #efe778
+        background--highlight: $color-green
     ),
     product: (
         background: $color-grey-light,
@@ -83,7 +83,7 @@ $palettes: (
     ),
     quantity-trigger: (
         background: #ccc,
-        background--hover: #efe778,
+        background--hover: $color-green,
         background--disabled: #eee,
         color: #111,
         color--disabled: #bbb
@@ -105,7 +105,7 @@ $palettes: (
         background--highlight: #f8f8f8,
         border: #eee,
         color--highlight: #333,
-        color--success: #76d443
+        color--success: $color-green
     ),
     tooltip: (
         background: #ccc,

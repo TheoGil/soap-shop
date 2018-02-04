@@ -24,6 +24,8 @@ $_layout-content-border: 1px solid palette(layout, content-border);
     margin: 0 auto;
     max-width: 62.25em;
     position: relative;
+    border-radius: $button-border-radius;
+    box-shadow: $light-box-shadow;
 }
 
 .snip-layout__close {
