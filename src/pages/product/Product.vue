@@ -142,7 +142,7 @@
         </table>
       </section>
     </div>
-    <modal v-if="displayModal" @close="displayModal = false">
+    <modal v-if="displaySizeQuantityModal" @close="displaySizeQuantityModal = false">
       <div slot="body">
         <div class="modal-section">
           <div class="h3">Taille</div>
@@ -161,11 +161,27 @@
           />
         </div>
         <div class="modal-actions">
-          <button class="button transparent" @click="displayModal = false">
+          <button class="button transparent" @click="displaySizeQuantityModal = false">
             Annuler
           </button>
           <button class="button" @click="addToCart">
             Ajouter
+          </button>
+        </div>
+      </div>
+    </modal>
+
+    <modal v-if="displayAddConfirmationModal" @close="displayAddConfirmationModal = false">
+      <div slot="body">
+        <div class="modal-section">
+          L'article "{{ title }}" a bien été ajouté au panier!
+        </div>
+        <div class="modal-actions">
+          <button class="button transparent" @click="displayAddConfirmationModal = false">
+            Poursuivre mes achats
+          </button>
+          <button class="button" @click="showCart">
+            Accéder au panier
           </button>
         </div>
       </div>
@@ -192,10 +208,21 @@
         selectedSize: 'medium',
         quantity: 1,
         availableStock: 5,
-        displayModal: false,
+        displaySizeQuantityModal: false,
+        displayAddConfirmationModal: false,
+        isMobile: false,
       };
     },
+    mounted() {
+      this.setIsMobile();
+      window.addEventListener('resize', this.setIsMobile);
+    },
     methods: {
+      setIsMobile() {
+        // @TODO implement the foundation utils that retrieve scss breakpoints in JS
+        const smallBreakpoint = 800;
+        this.isMobile = window.innerWidth < smallBreakpoint;
+      },
       setQuantity(newQuantity) {
         this.quantity = newQuantity;
       },
@@ -203,27 +230,51 @@
         this.selectedSize = newSize;
       },
       handleClickAddButton() {
-        // @TODO Implement the foundation util function that retrieve breakpoints from CSS
-        const smallBreakpoint = 800;
-        const isMobile = window.innerWidth < smallBreakpoint;
-        if (isMobile) {
-          this.displayModal = true;
+        if (this.isMobile) {
+          this.displaySizeQuantityModal = true;
         } else {
           this.addToCart();
         }
       },
       addToCart() {
+        // Temporary size map
+        const sizeMap = {
+          small: 250,
+          medium: 500,
+          large: 750,
+        };
+
+        // Disable no-undef as Snipcart is attached to window
+        /* eslint-disable no-undef */
         Snipcart.api.items.add({
-          id: this.id,
+          id: `${this.id}-${this.size}`,
           name: this.title,
           url: '/',
           price: this.price,
           quantity: this.quantity,
+          stackable: true,
+          duplicatable: false,
+          dimensions: {
+            weight: sizeMap[this.size],
+          },
         })
-        .then((item) => {
-          // Item sucessfully added
-          console.log(item);
+        .then(() => {
+          // If displayed, close the size quantity modal displayed on smaller devices
+          this.displaySizeQuantityModal = false;
+          // Open the confirmation modal
+          this.displayAddConfirmationModal = true;
         });
+        /* eslint-enable no-undef */
+      },
+      showCart() {
+        // Close all potentially open modals
+        this.displaySizeQuantityModal = false;
+        this.displayAddConfirmationModal = false;
+
+        // Disable no-undef as Snipcart is attached to window
+        /* eslint-disable no-undef */
+        Snipcart.api.modal.show();
+        /* eslint-enable no-undef */
       },
     },
     components: {

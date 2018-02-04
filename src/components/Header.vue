@@ -57,14 +57,17 @@
         this.offCanvasIsActive = !this.offCanvasIsActive;
       },
       showCart() {
+        // Disable no-undef as Snipcart is attached to window
+        /* eslint-disable no-undef */
         Snipcart.api.modal.show();
+        /* eslint-enable no-undef */
       },
     },
     components: {
       'off-canvas': OffCanvas,
     },
     directives: {
-      'sticky': VueSticky,
+      sticky: VueSticky,
     },
   };
 </script>
