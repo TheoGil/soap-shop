@@ -1,5 +1,8 @@
 <template>
   <div itemscope itemtype="http://schema.org/Product">
+    <ul>
+      <li v-for="item in items">{{item.id}}</li>
+    </ul>
     <!-- Product Header -->
     <div class="row flex product-header">
       <div class="columns small-8">
@@ -190,6 +193,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   import Stars from '../../components/Stars';
   import Heart from '../../components/Heart';
   import Quantity from '../../components/Quantity';
@@ -217,6 +222,9 @@
       this.setIsMobile();
       window.addEventListener('resize', this.setIsMobile);
     },
+    computed: mapGetters({
+      items: 'cartProducts',
+    }),
     methods: {
       setIsMobile() {
         // @TODO implement the foundation utils that retrieve scss breakpoints in JS
@@ -237,15 +245,13 @@
         }
       },
       addToCart() {
+        /*
         // Temporary size map
         const sizeMap = {
           small: 250,
           medium: 500,
           large: 750,
         };
-
-        // Disable no-undef as Snipcart is attached to window
-        /* eslint-disable no-undef */
         Snipcart.api.items.add({
           id: `${this.id}-${this.size}`,
           name: this.title,
@@ -264,7 +270,10 @@
           // Open the confirmation modal
           this.displayAddConfirmationModal = true;
         });
-        /* eslint-enable no-undef */
+        */
+        const product = this.title;
+        const quantity = this.quantity;
+        this.$store.dispatch('addToCart', { product, quantity });
       },
       showCart() {
         // Close all potentially open modals
