@@ -17,6 +17,8 @@ Vue.use(VueScrollTo);
 new Vue({
   el: '#app',
   router,
+  // provide the store using the "store" option.
+  // this will inject the store instance to all child components.
   store,
   template: '<App/>',
   components: { App },

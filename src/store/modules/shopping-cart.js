@@ -1,5 +1,6 @@
 const state = {
   products: [],
+  testData: 'Coucou les musclés! :)',
 };
 
 const mutations = {
@@ -15,7 +16,6 @@ const mutations = {
       record.quantity += quantity;
     }
   },
-
   REMOVE_FROM_CART(state, item) {
     const index = state.products.findIndex(products => products.id === item.id);
     state.products.splice(index, 1);

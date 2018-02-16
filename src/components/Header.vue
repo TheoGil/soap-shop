@@ -20,10 +20,7 @@
               <use xlink:href="#icon-search"></use>
             </svg>
           </button>
-
-          <button class="navbar-entry transparent"
-                  type="button"
-                  v-on:click="showCart">
+          <router-link to="/cart" class="navbar-entry">
             <svg class="icon">
               <title>Accéder à votre panier</title>
               <use xlink:href="#icon-cart"></use>
@@ -34,13 +31,7 @@
                 <div class="next js-next-count"></div>
               </div>
             </div>
-          </button>
-          <!--<router-link to="/cart" class="navbar-entry">
-            <svg class="icon icon-angle-down">
-              <use xlink:href="#icon-cart"></use>
-            </svg>
           </router-link>
-          -->
         </div>
       </nav> 
     </div>
@@ -62,19 +53,8 @@
       };
     },
     mounted() {
-      document.addEventListener('snipcart.ready', () => {
-        // Disable no-undef as Snipcart is attached to window
-        /* eslint-disable no-undef */
-        this.productsCount = Snipcart.api.items.count();
-
-        Snipcart.subscribe('item.added', () => {
-          this.updateCounter();
-        });
-        Snipcart.subscribe('item.removed', () => {
-          this.updateCounter();
-        });
-        /* eslint-enable no-undef */
-      });
+      // Nombre d'articles dans le panier
+      // this.productsCount = Snipcart.api.items.count();
     },
     methods: {
       updateCounter() {
