@@ -34,7 +34,7 @@ export default new Vuex.Store({
     // before adding it to the cart.
     addProduct: ({ commit }, product) => new Promise((resolve, reject) => {
       setTimeout(() => {
-          // canAddToCart should come from the server
+        // canAddToCart should come from the server
         const canAddToCart = Math.random() >= 0.25;
         if (canAddToCart) {
           commit('addProduct', product);

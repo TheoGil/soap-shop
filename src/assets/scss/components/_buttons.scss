@@ -29,4 +29,15 @@
 	&.transparent {
 		background-color: transparent;
 	}
+
+	&.loading {
+		opacity: 0.5;
+		cursor: wait; // Fallback
+		cursor: progress;
+
+		&:hover,
+		&:focus {
+			background: $color-ui-main;
+		}
+	}
 }

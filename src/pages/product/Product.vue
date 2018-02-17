@@ -46,16 +46,22 @@
             <span itemprop="price" :content="price">{{ price }}</span>
             <span itemprop="priceCurrency" content="EUR">&euro;</span>
           </div>
-          <button class="badge product-buy flex"
-                  v-on:click="handleClickAddButton"
-                  type="button"
+          <button class="badge product-buy flex button"
+            v-on:click="handleClickAddButton"
+            :class="classObject"
+            type="button"
           >
-            <svg class="icon">
-              <use xlink:href="#icon-cart"></use>
-            </svg>
-            <span class="desktop">
-              Ajouter au panier
+            <span v-if="!displayLoader || this.isMobile">
+              <svg class="icon">
+                <use xlink:href="#icon-cart"></use>
+              </svg>
+              <span class="desktop">
+                Ajouter au panier
+              </span>
             </span>
+            <svg class="spinner" v-if="displayLoader && !this.isMobile">
+              <use xlink:href="#icon-spinner"></use>
+            </svg>
           </button>
           <heart/>
           <a class="badge share" href="#">
@@ -188,6 +194,20 @@
         </div>
       </div>
     </modal>
+    <modal v-if="displayErrorModal" @close="displayErrorModal = false">
+      <div slot="body">
+        <div class="h3">Oups...</div>
+        <div class="modal-section">
+          Une erreur est survenue lors de l'ajout du produit à votre panier.<br>
+          Il est possible que son stock soit épuisé.
+        </div>
+        <div class="modal-actions">
+          <button class="button" @click="displayErrorModal = false">
+            Rammenez moi à la fiche produit
+          </button>
+        </div>
+      </div>
+    </modal>
   </div>
 </template>
 
@@ -213,6 +233,7 @@
 
         displaySizeQuantityModal: false,
         displayAddConfirmationModal: false,
+        displayErrorModal: false,
         isMobile: false,
         displayLoader: false,
       };
@@ -220,6 +241,13 @@
     mounted() {
       this.setIsMobile();
       window.addEventListener('resize', this.setIsMobile);
+    },
+    computed: {
+      classObject: function () {
+        return {
+          loading: this.displayLoader && !this.isMobile,
+        }
+      }
     },
     methods: {
       setIsMobile() {
@@ -241,30 +269,35 @@
         }
       },
       addToCart() {
-        const product = {
-          title: this.title,
-          id: `${this.id}-${this.size}`,
-          quantity: this.quantity,
-          price: this.price,
-        };
+        if (!this.displayLoader) {
+          const product = {
+            title: this.title,
+            id: `${this.id}-${this.size}`,
+            quantity: this.quantity,
+            price: this.price,
+          };
 
-        // Show loader
-        this.displayLoader = true;
+          // Show loader
+          this.displayLoader = true;
 
-        // Async method, check if product really can be added (ie: if still in stock)
-        // Then will call adequate callback
-        this.$store.dispatch('addProduct', product).then(this.addToCartSuccess, this.addToCartFailure);
+          // Async method, check if product really can be added (ie: if still in stock)
+          // Then will call adequate callback
+          this.$store.dispatch('addProduct', product)
+              .then(this.addToCartSuccess, this.addToCartFailure)
+              .finally(() => {
+                // If displayed, close the size quantity modal displayed on smaller devices
+                this.displaySizeQuantityModal = false;
+                // Hide spinner
+                this.displayLoader = false;
+              });
+        }
       },
       addToCartSuccess() {
-        // If displayed, close the size quantity modal displayed on smaller devices
-        this.displaySizeQuantityModal = false;
         // Open the confirmation modal
         this.displayAddConfirmationModal = true;
       },
       addToCartFailure() {
-        // @TODO Handle failure to add to cart
-        // @TODO Provide some reassuring feedback to end user
-        alert('FAILURE');
+        this.displayErrorModal = true;
       },
     },
     components: {
