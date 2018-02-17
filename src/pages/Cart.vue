@@ -1,46 +1,53 @@
 <!-- ./src/pages/Cart.vue -->
 <template>
-  <div>
-    <p>Le panier contient {{ count }} articles</p>
+  <div class="cart">
+    <div v-if="count > 0">
+      <!-- PRODUCT LISTING -->
+      <ul class="cart-product-listing">
+        <li v-for="product in products">
+          <product
+                  :id="product.id"
+                  :title="product.title"
+                  :price="product.price"
+                  :quantity="product.quantity"
+                  :stockAvailable="product.stockAvailable"
+                  :size="product.size"
+          />
+        </li>
+      </ul>
 
-    <!-- PRODUCT LISTING -->
-    <ul class="cart-product-listing">
-      <li v-for="product in products">
-        <product
-          :id="product.id"
-          :title="product.title"
-          :price="product.price"
-          :quantity="product.quantity"
-          :stockAvailable="product.stockAvailable"
-          :size="product.size"
-        />
-      </li>
-    </ul>
+      <!-- CART OVERVIEW -->
+      <div class="cart-review-container">
+        <div class="row column">
+          <div class="cart-review">
+            <div class="cart-review-line">
+              <div class="cart-review-key">Item Total</div>
+              <div class="cart-review-value">15.50</div>
+            </div>
+            <div class="cart-review-line">
+              <div class="cart-review-key">Estimated Shipping</div>
+              <div class="cart-review-value">7.00</div>
+            </div>
+            <div class="cart-review-line bold">
+              <div class="cart-review-key">Order Total</div>
+              <div class="cart-review-value">{{ subTotal }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <!-- CART OVERVIEW -->
-    <div class="cart-review-container">
-      <div class="row column">
-        <div class="cart-review">
-          <div class="cart-review-line">
-            <div class="cart-review-key">Item Total</div>
-            <div class="cart-review-value">15.50</div>
-          </div>
-          <div class="cart-review-line">
-            <div class="cart-review-key">Estimated Shipping</div>
-            <div class="cart-review-value">7.00</div>
-          </div>
-          <div class="cart-review-line bold">
-            <div class="cart-review-key">Order Total</div>
-            <div class="cart-review-value">{{ subTotal }}</div>
-          </div>
+      <!-- GO TO CHECKOUT -->
+      <div class="actions-container text-right">
+        <div class="row column">
+          <a href="#" class="button large">Checkout</a>
         </div>
       </div>
     </div>
 
-    <!-- GO TO CHECKOUT -->
-    <div class="actions-container text-right">
-      <div class="row column">
-        <a href="#" class="button large">Checkout</a>
+    <div class="row column empty-cart" v-if="count === 0">
+      <div class="callout">
+        <p class="h3">Panier vide...</p>
+        <p>Votre panier est actuellement vide! Sélectionnez quelques produits avant de continuer.</p>
       </div>
     </div>
   </div>

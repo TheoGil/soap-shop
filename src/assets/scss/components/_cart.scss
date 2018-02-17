@@ -1,5 +1,5 @@
 .cart-product-listing {
-  margin: 0;
+  margin: 1.5rem 0 0;
   list-style-type: none;
 
   // Hide separator on last item
@@ -126,4 +126,12 @@
 .actions-container {
   background-color: $color-grey-lighter;
   padding: 1rem 0;
+}
+
+.empty-cart {
+  $header-height: 41px;
+  height: calc(100vh - #{$header-height});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

@@ -12,7 +12,7 @@
             </div>
             <div class="columns small-8 large-10">
                 <div class="header">
-                    <div class="remove-from-cart" @click="displayRemoveConfirmationModal = true">
+                    <div class="remove-from-cart" v-on:click="displayRemoveConfirmationModal = true">
                         <svg class="icon">
                             <use xlink:href="#icon-close"></use>
                         </svg>
@@ -84,6 +84,7 @@
         }
       },
       removeFromCart() {
+        this.displayRemoveConfirmationModal = false;
         this.$store.commit('removeFromCart', this.id);
       },
     },
