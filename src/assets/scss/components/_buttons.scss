@@ -11,6 +11,9 @@
 	color: $color-grey;
 	cursor: pointer;
 	transition: $transition-duration;
+	line-height: 1;
+	text-align: center;
+	font-weight: 400;
 
 	&.large {
 		padding: 0.8rem 2rem;

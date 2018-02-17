@@ -165,7 +165,10 @@
             Annuler
           </button>
           <button class="button" @click="addToCart">
-            Ajouter
+            <span v-if="!displayLoader">Ajouter</span>
+            <svg class="spinner" v-if="displayLoader">
+              <use xlink:href="#icon-spinner"></use>
+            </svg>
           </button>
         </div>
       </div>
@@ -179,9 +182,9 @@
           <button class="button transparent" @click="displayAddConfirmationModal = false">
             Poursuivre mes achats
           </button>
-          <button class="button" @click="showCart">
+          <router-link to="/cart" class="button">
             Accéder au panier
-          </button>
+          </router-link>
         </div>
       </div>
     </modal>
@@ -189,8 +192,6 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-
   import Stars from '../../components/Stars';
   import Heart from '../../components/Heart';
   import Quantity from '../../components/Quantity';
@@ -209,9 +210,11 @@
         selectedSize: 'medium',
         quantity: 1,
         availableStock: 5,
+
         displaySizeQuantityModal: false,
         displayAddConfirmationModal: false,
         isMobile: false,
+        displayLoader: false,
       };
     },
     mounted() {
@@ -245,6 +248,9 @@
           price: this.price,
         };
 
+        // Show loader
+        this.displayLoader = true;
+
         // Async method, check if product really can be added (ie: if still in stock)
         // Then will call adequate callback
         this.$store.dispatch('addProduct', product).then(this.addToCartSuccess, this.addToCartFailure);
@@ -259,16 +265,6 @@
         // @TODO Handle failure to add to cart
         // @TODO Provide some reassuring feedback to end user
         alert('FAILURE');
-      },
-      showCart() {
-        // Close all potentially open modals
-        this.displaySizeQuantityModal = false;
-        this.displayAddConfirmationModal = false;
-
-        // Disable no-undef as Snipcart is attached to window
-        /* eslint-disable no-undef */
-        Snipcart.api.modal.show();
-        /* eslint-enable no-undef */
       },
     },
     components: {
