@@ -4,6 +4,7 @@
 }
 
 .button {
+	display: inline-block;
 	padding: .5rem 1rem;
 	border-radius: $button-border-radius;
 	background: $color-ui-main;
@@ -11,8 +12,15 @@
 	cursor: pointer;
 	transition: $transition-duration;
 
-	&:hover {
+	&.large {
+		padding: 0.8rem 2rem;
+		font-size: 1.2rem;
+	}
+
+	&:hover,
+	&:focus {
 		background: $color-ui-main-darker;
+		color: $color-grey;
 	}
 
 	&.transparent {

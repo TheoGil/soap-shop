@@ -2,6 +2,8 @@
 <template>
   <div>
     <p>Le panier contient {{ count }} articles</p>
+
+    <!-- PRODUCT LISTING -->
     <ul class="cart-product-listing">
       <li v-for="product in products">
         <product
@@ -12,6 +14,8 @@
         />
       </li>
     </ul>
+
+    <!-- CART OVERVIEW -->
     <div class="cart-review-container">
       <div class="row column">
         <div class="cart-review">
@@ -28,6 +32,13 @@
             <div class="cart-review-value">{{ subTotal }}</div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- GO TO CHECKOUT -->
+    <div class="actions-container text-right">
+      <div class="row column">
+        <a href="#" class="button large">Checkout</a>
       </div>
     </div>
   </div>
