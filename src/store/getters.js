@@ -10,4 +10,17 @@ const getSubTotal = (state) => {
   return subTotal;
 };
 
-export { getAllProducts, getSubTotal };
+// Return total count of items in cart
+const getProductsCount = (state) => {
+  let count = 0;
+  state.cart.products.forEach((product) => {
+    count += 1 * product.quantity;
+  });
+  return count;
+};
+
+export {
+  getAllProducts,
+  getSubTotal,
+  getProductsCount,
+};
