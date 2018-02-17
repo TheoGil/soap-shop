@@ -1,8 +1,5 @@
 <template>
   <div itemscope itemtype="http://schema.org/Product">
-    <ul>
-      <li v-for="item in items">{{item.id}}</li>
-    </ul>
     <!-- Product Header -->
     <div class="row flex product-header">
       <div class="columns small-8">
@@ -173,7 +170,6 @@
         </div>
       </div>
     </modal>
-
     <modal v-if="displayAddConfirmationModal" @close="displayAddConfirmationModal = false">
       <div slot="body">
         <div class="modal-section">
@@ -248,13 +244,21 @@
           quantity: this.quantity,
           price: this.price,
         };
-        // Add product to our state
-        this.$store.state.cart.products.push(product);
 
+        // Async method, check if product really can be added (ie: if still in stock)
+        // Then will call adequate callback
+        this.$store.dispatch('addProduct', product).then(this.addToCartSuccess, this.addToCartFailure);
+      },
+      addToCartSuccess() {
         // If displayed, close the size quantity modal displayed on smaller devices
         this.displaySizeQuantityModal = false;
         // Open the confirmation modal
         this.displayAddConfirmationModal = true;
+      },
+      addToCartFailure() {
+        // @TODO Handle failure to add to cart
+        // @TODO Provide some reassuring feedback to end user
+        alert('FAILURE');
       },
       showCart() {
         // Close all potentially open modals
