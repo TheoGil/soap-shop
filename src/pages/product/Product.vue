@@ -222,9 +222,6 @@
       this.setIsMobile();
       window.addEventListener('resize', this.setIsMobile);
     },
-    computed: mapGetters({
-      items: 'cartProducts',
-    }),
     methods: {
       setIsMobile() {
         // @TODO implement the foundation utils that retrieve scss breakpoints in JS
@@ -245,35 +242,19 @@
         }
       },
       addToCart() {
-        /*
-        // Temporary size map
-        const sizeMap = {
-          small: 250,
-          medium: 500,
-          large: 750,
-        };
-        Snipcart.api.items.add({
+        const product = {
+          title: this.title,
           id: `${this.id}-${this.size}`,
-          name: this.title,
-          url: '/',
-          price: this.price,
           quantity: this.quantity,
-          stackable: true,
-          duplicatable: false,
-          dimensions: {
-            weight: sizeMap[this.size],
-          },
-        })
-        .then(() => {
-          // If displayed, close the size quantity modal displayed on smaller devices
-          this.displaySizeQuantityModal = false;
-          // Open the confirmation modal
-          this.displayAddConfirmationModal = true;
-        });
-        */
-        const product = this.title;
-        const quantity = this.quantity;
-        this.$store.dispatch('addToCart', { product, quantity });
+          price: this.price,
+        };
+        // Add product to our state
+        this.$store.state.cart.products.push(product);
+
+        // If displayed, close the size quantity modal displayed on smaller devices
+        this.displaySizeQuantityModal = false;
+        // Open the confirmation modal
+        this.displayAddConfirmationModal = true;
       },
       showCart() {
         // Close all potentially open modals

@@ -1,16 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import shoppingCart from './modules/shopping-cart';
-import * as actions from './actions';
+import cart from './modules/shopping-cart';
 import * as getters from './getters';
+// import * as actions from './actions';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  strict: true,
-  actions,
-  getters,
+  /* strict: true,
+  actions, */
   modules: {
-    shoppingCart,
+    cart,
   },
+  getters,
 });
