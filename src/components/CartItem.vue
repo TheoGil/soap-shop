@@ -18,10 +18,11 @@
                 </div>
                 <div class="form-control">
                     <quantity
-                            :value="quantity"
-                            :max-value="availableStock"
-                            :input-name="'quantity'"
-                            v-on:setQuantity="setQuantity"
+                        :value="quantity"
+                        :input-name="`${id}-quantity`"
+                        :maxValue="stockAvailable"
+                        :isDisabled="isDisabled"
+                        v-on:setQuantity="setQuantity"
                     />
                 </div>
             </div>
@@ -34,7 +35,34 @@
 
   export default {
     name: 'CartItem',
-    props: ['title', 'price', 'quantity', 'size'],
+    data() {
+      return {
+        isDisabled: false,
+      };
+    },
+    props: ['id', 'title', 'price', 'quantity', 'size', 'stockAvailable'],
+    methods: {
+      setQuantity(newQuantity) {
+        const data = {
+          productId: this.id,
+          quantity: newQuantity,
+        };
+
+        // If we ADD more product, we check it's availability from server
+        if (newQuantity > this.quantity) {
+          this.isDisabled = true;
+          this.$store.dispatch('updateProductQuantity', data).then(() => {
+            this.isDisabled = false;
+          }, () => {
+            alert('Oups... Les stocks ne sont pas suffisant pour en commander autant...');
+            this.isDisabled = false;
+          });
+        } else {
+          // If decrement quantity, no questions aksed
+          this.$store.commit('updateProductQuantity', data);
+        }
+      },
+    },
     components: {
       quantity: Quantity,
     },

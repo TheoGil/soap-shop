@@ -29,4 +29,9 @@
 			border-bottom-left-radius: 0;
 		}
 	}
+
+	&.disabled {
+		opacity: .5;
+		pointer-events: none;
+	}
 }
