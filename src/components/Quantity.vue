@@ -1,21 +1,21 @@
 <template>
   <div class="quantity-input-container" :class="{disabled: isDisabled}">
-    <button 
+    <button
       class="button"
       type="button"
       v-on:click="decrement"
     >
       -
     </button>
-    <input 
-      type="number" 
-      v-model="value" 
+    <input
+      type="number"
+      v-model="value"
       v-bind:max="maxValue"
       min="1"
       :id="inputName"
       readonly
     >
-    <button 
+    <button
       class="button"
       type="button"
       v-on:click="increment"

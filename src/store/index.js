@@ -17,7 +17,15 @@ export default new Vuex.Store({
     },
     updateProductQuantity: (state, data) => {
       const productIndex = state.cart.products.findIndex(product => product.id === data.productId);
-      state.cart.products[productIndex].quantity = data.quantity;
+      if (productIndex > -1) {
+        state.cart.products[productIndex].quantity = data.quantity;
+      }
+    },
+    removeFromCart: (state, id) => {
+      const productIndex = state.cart.products.findIndex(product => product.id === id);
+      if (productIndex > -1) {
+        state.cart.products.splice(productIndex, 1);
+      }
     },
   },
   actions: {
