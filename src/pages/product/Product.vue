@@ -275,6 +275,7 @@
             id: `${this.id}-${this.size}`,
             quantity: this.quantity,
             price: this.price,
+            availableStock: this.availableStock,
           };
 
           // Show loader

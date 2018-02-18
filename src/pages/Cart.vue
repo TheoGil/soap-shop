@@ -6,12 +6,12 @@
       <ul class="cart-product-listing">
         <li v-for="product in products">
           <product
-                  :id="product.id"
-                  :title="product.title"
-                  :price="product.price"
-                  :quantity="product.quantity"
-                  :stockAvailable="product.stockAvailable"
-                  :size="product.size"
+            :id="product.id"
+            :title="product.title"
+            :price="product.price"
+            :quantity="product.quantity"
+            :availableStock="product.availableStock"
+            :size="product.size"
           />
         </li>
       </ul>

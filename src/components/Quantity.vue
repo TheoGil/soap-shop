@@ -38,6 +38,9 @@
     },
     methods: {
       increment() {
+        console.log(this.value < this.maxValue);
+        console.log(!this.isDisabled);
+
         if ((this.value < this.maxValue) && !this.isDisabled) {
           this.$emit('setQuantity', this.value + 1);
         }

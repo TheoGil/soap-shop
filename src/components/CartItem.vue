@@ -25,7 +25,7 @@
                     <quantity
                         :value="quantity"
                         :input-name="`${id}-quantity`"
-                        :maxValue="stockAvailable"
+                        :maxValue="availableStock"
                         :isDisabled="isDisabled"
                         v-on:setQuantity="updateQuantity"
                     />
@@ -62,13 +62,14 @@
         displayRemoveConfirmationModal: false,
       };
     },
-    props: ['id', 'title', 'price', 'quantity', 'size', 'stockAvailable'],
+    props: ['id', 'title', 'price', 'quantity', 'size', 'availableStock'],
     methods: {
       updateQuantity(newQuantity) {
         const data = {
           productId: this.id,
           quantity: newQuantity,
         };
+        console.log(data);
         // If we ADD more product, we check it's availability from server
         if (newQuantity > this.quantity) {
           this.isDisabled = true;
