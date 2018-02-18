@@ -243,11 +243,11 @@
       window.addEventListener('resize', this.setIsMobile);
     },
     computed: {
-      classObject: function () {
+      classObject() {
         return {
           loading: this.displayLoader && !this.isMobile,
-        }
-      }
+        };
+      },
     },
     methods: {
       setIsMobile() {

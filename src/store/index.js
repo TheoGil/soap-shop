@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+
+import { saveCartToLocalStorage } from '../helpers';
 import cart from './modules/shopping-cart';
 import * as getters from './getters';
 // import * as actions from './actions';
@@ -12,19 +14,25 @@ export default new Vuex.Store({
   },
   getters,
   mutations: {
+    fetchCartContent: (state, products) => {
+      state.cart.products = products;
+    },
     addProduct: (state, product) => {
       state.cart.products.push(product);
+      saveCartToLocalStorage(state.cart.products);
     },
     updateProductQuantity: (state, data) => {
       const productIndex = state.cart.products.findIndex(product => product.id === data.productId);
       if (productIndex > -1) {
         state.cart.products[productIndex].quantity = data.quantity;
+        saveCartToLocalStorage(state.cart.products);
       }
     },
     removeFromCart: (state, id) => {
       const productIndex = state.cart.products.findIndex(product => product.id === id);
       if (productIndex > -1) {
         state.cart.products.splice(productIndex, 1);
+        saveCartToLocalStorage(state.cart.products);
       }
     },
   },
@@ -57,5 +65,13 @@ export default new Vuex.Store({
         }
       }, Math.random() * 1000);
     }),
+    fetchCartContent: ({ commit }) => {
+      let products = [];
+      const savedProducts = localStorage.getItem('products');
+      if (savedProducts) {
+        products = JSON.parse(savedProducts);
+      }
+      commit('fetchCartContent', products);
+    },
   },
 });
