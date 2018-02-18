@@ -4,6 +4,7 @@
       class="button"
       type="button"
       v-on:click="decrement"
+      :class="{disabled: value <= 1}"
     >
       -
     </button>
@@ -19,6 +20,7 @@
       class="button"
       type="button"
       v-on:click="increment"
+      :class="{disabled: value >= maxValue}"
     >
       +
     </button>
