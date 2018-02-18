@@ -44,7 +44,6 @@
           </div>
           <div class="form-control product-price desktop">
             <span itemprop="price" :content="price">{{ price }}</span>
-            <span itemprop="priceCurrency" content="EUR">&euro;</span>
           </div>
           <button class="badge product-buy flex button"
             v-on:click="handleClickAddButton"

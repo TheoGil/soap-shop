@@ -22,15 +22,15 @@
           <div class="cart-review">
             <div class="cart-review-line">
               <div class="cart-review-key">Item Total</div>
-              <div class="cart-review-value">15.50</div>
+              <div class="cart-review-value">{{ 15 | currency }}</div>
             </div>
             <div class="cart-review-line">
               <div class="cart-review-key">Estimated Shipping</div>
-              <div class="cart-review-value">7.00</div>
+              <div class="cart-review-value">{{ 7 | currency }}</div>
             </div>
             <div class="cart-review-line bold">
               <div class="cart-review-key">Order Total</div>
-              <div class="cart-review-value">{{ subTotal }}</div>
+              <div class="cart-review-value">{{ subTotal | currency }}</div>
             </div>
           </div>
         </div>
