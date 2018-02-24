@@ -24,16 +24,15 @@
     <div class="row column">
       <ul class="item-listing">
         <li 
-          v-for="(soap, index) in soaps" 
-          class="list-item" 
-          v-bind:class="{'is-large' : soap.isLarge}"
-          v-bind:key="soap.name"
+          v-for="(product, index) in products"
+          class="list-item"
+          v-bind:key="product.name.language._cdata"
           v-bind:data-index="index"
         >
           <soap 
-          :title="soap.name"
-          :price="soap.price"
-          :thumbnail="soap.thumbnailUrl"
+          :title="product.name.language._cdata"
+          :price="product.price._cdata"
+          :thumbnail="product.id_default_image._attributes['xlink:href']"
           />  
         </li>
       </ul>
@@ -42,6 +41,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+  import convert from 'xml-js';
   import ProductThumbnail from '../components/ProductThumbnail';
 
   import thumb1 from '../assets/img/soaps/eponna.jpg';
@@ -119,18 +120,75 @@
             thumbnailUrl: thumb11,
           },
         ],
+        products: [],
       };
     },
     components: {
       soap: ProductThumbnail,
     },
     methods: {
-      handleResize: () => {
-        // console.log(this);
+      fetchAllProductsIds() {
+        const productListingAPIEndpoint = 'https://www.mon-savonnier.fr/api/products';
+
+        return axios({
+          method: 'get',
+          url: productListingAPIEndpoint,
+          params: {
+            ws_key: process.env.WS_KEY,
+          },
+          transformResponse: [function (data) {
+            // Convert data to a JSON object
+            const dataAsString = convert.xml2json(data);
+            return JSON.parse(dataAsString);
+          }, function (data) {
+            const rawProducts = data.elements[0].elements[0].elements;
+            const productIds = [];
+            rawProducts.forEach((product) => {
+              productIds.push(product.attributes.id);
+            });
+            return productIds;
+          }],
+        });
+      },
+      fetchAllProducts() {
+        this.fetchAllProductsIds()
+          .then((response) => {
+            const productsIds = response.data;
+            productsIds.forEach((id) => {
+              this.fetchProduct(id)
+                .then((response) => {
+                  // console.log(response.data);
+                  this.products.push(response.data);
+                }).catch((error) => {
+                  console.log(error);
+                });
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
+      fetchProduct(id) {
+        const APIEndpoint = `https://www.mon-savonnier.fr/api/products/${id}`;
+
+        return axios({
+          method: 'get',
+          url: APIEndpoint,
+          params: {
+            ws_key: process.env.WS_KEY,
+          },
+          transformResponse: [function (data) {
+            // Convert data to a JSON object
+            const dataAsString = convert.xml2json(data, { compact: true });
+            return JSON.parse(dataAsString);
+          }, function (data) {
+            return data.prestashop.product;
+          }],
+        });
       },
     },
-    mounted: () => {
-      // window.addEventListener('resize', this.handleResize)
+    mounted() {
+      this.fetchAllProducts();
     },
   };
 </script>
