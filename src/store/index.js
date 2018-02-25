@@ -9,6 +9,9 @@ import { fetchAllProducts } from './actions';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+    products: [],
+  },
   modules: {
     cart,
   },
@@ -76,7 +79,7 @@ export default new Vuex.Store({
       }
       commit('fetchCartContent', products);
     },
-    fetchAllProducts: ({ commit }) => new Promise(() => {
+    fetchAllProducts: ({ commit }) => new Promise((resolve) => {
       const products = {};
       fetchAllProducts()
         .then((data) => {
@@ -86,6 +89,7 @@ export default new Vuex.Store({
             products[product.data.id._cdata] = product.data;
           });
           commit('fetchAllProducts', products);
+          resolve();
         });
     }),
   },
