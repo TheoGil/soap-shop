@@ -1,5 +1,5 @@
 // Return every products in cart
-const getAllProducts = state => state.cart.products;
+const getCartContent = state => state.cart.products;
 
 // Return total price of cart
 const getSubTotal = (state) => {
@@ -19,8 +19,12 @@ const getProductsCount = (state) => {
   return count;
 };
 
+// Return total count of items in cart
+const getProducts = state => state.products;
+
 export {
-  getAllProducts,
+  getCartContent,
   getSubTotal,
   getProductsCount,
+  getProducts,
 };

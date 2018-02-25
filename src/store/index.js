@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 import { saveCartToLocalStorage } from '../helpers';
 import cart from './modules/shopping-cart';
 import * as getters from './getters';
-// import * as actions from './actions';
+import { fetchAllProducts } from './actions';
 
 Vue.use(Vuex);
 
@@ -14,6 +14,9 @@ export default new Vuex.Store({
   },
   getters,
   mutations: {
+    fetchAllProducts: (state, products) => {
+      state.products = products;
+    },
     fetchCartContent: (state, products) => {
       state.cart.products = products;
     },
@@ -73,5 +76,17 @@ export default new Vuex.Store({
       }
       commit('fetchCartContent', products);
     },
+    fetchAllProducts: ({ commit }) => new Promise(() => {
+      const products = {};
+      fetchAllProducts()
+        .then((data) => {
+          // reformat products as an object like so:
+          // { id: product, ... }
+          data.forEach((product) => {
+            products[product.data.id._cdata] = product.data;
+          });
+          commit('fetchAllProducts', products);
+        });
+    }),
   },
 });

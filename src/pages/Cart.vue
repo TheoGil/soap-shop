@@ -62,7 +62,7 @@
     computed: {
       // Using speard operator in case we want to add our own custom computed properties
       ...mapGetters({
-        products: 'getAllProducts',
+        products: 'getCartContent',
         subTotal: 'getSubTotal',
         count: 'getProductsCount',
       }),
